@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sum Polling Units</title>
+    <link rel="stylesheet" href="{% static 'assets/index.css' %}">
+</head>
+
+<body style="text-align: center">
+
+<h3>Get the Sum of All Polling units in a LGA</h3>
+
+<div>
+  <form method="post" action="{% url 'polling_by_lga' %}"
+        style="padding: 10px; margin-bottom: 10px">
+      {% csrf_token %}
+      <label for="lga">Choose LGA</label>
+      <select id="lga" name="lga">
+          <option>Select a LGA</option>
+          {% for lga in all_lga %}
+            <option>{{ lga.lga_name }}</option>
+          {% endfor %}
+      </select>
+
+      <button type="submit">Submit</button>
+  </form>
+    {% if selected_lga and len_all_pu != 0 %}
+
+    <div>
+        <p>Result for {{ selected_lga }}</p>
+        <p>Number of Polling Units: {{ len_all_pu }}</p>
+
+        <h3>List of Available Polling Units in {{ selected_lga }} LGA</h3>
+        <ul style="display: inline-block;">
+            {% if all_pu %}
+                {% for pu in all_pu %}
+                    <li>
+                        <a href="{% url 'polling_result' pu.uniqueid %}">
+                            {{ pu.polling_unit_name.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+
+        </ul>
+    </div>
+    {% else %}
+    <p>{{ selected_lga}} LGA has no Polling Unit </p>
+    {% endif %}
+
+    <a href="{% url 'index' %}" style="padding: 10px">Back to Homepage</a>
+</div>
+
+
+</body>
+</html>

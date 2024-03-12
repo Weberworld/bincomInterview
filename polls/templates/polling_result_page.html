@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'assets/index.css' %}">
+</head>
+<body>
+<h3>Unit: {{ polling_unit.polling_unit_name.title }}</h3>
+
+<div style="text-align: center">
+
+    <p> These  are the polling result details for
+        <span style="text-decoration: bold">{{ polling_unit.polling_unit_name.title }}</span>
+    </p>
+
+    <p><b>Ward id</b>: {{ polling_unit.ward_id }}</p>
+    <p><b>LGA ID</b>: {{ polling_unit.lga_id }}</p>
+    <p><b>Unique Ward Id</b>{{ polling_unit.uniquewardid }}</p>
+    <p><b>Unit Number: </b>{{ polling_unit.polling_unit_number }}</p>
+    <p><b>Unit Name: </b>{{ polling_unit.polling_unit_name.title }}</p>
+    <p><b>Unit Description:</b> {{ polling_unit.polling_unit_description.title }}</p>
+    <p><b>Unit Lat:</b>{{ polling_unit.lat }}</p>
+    <p><b>Unit Long:</b>{{ polling_unit.long }}</p>
+    <p><b>Entered By:</b>{{ polling_unit.entered_by_user }}</p>
+    <p><b>Date: </b>{{ polling_unit.date_entered }}</p>
+    <p><b>User IP address: </b>{{ polling_unit.user_ip_address }}</p>
+
+</div>
+
+</body>
+</html>
